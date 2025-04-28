@@ -1,0 +1,100 @@
+   CREATE DATABASE barkod_sistemi;
+   USE barkod_sistemi;
+
+
+
+   ---------------
+
+      CREATE TABLE urunler (
+     barkod VARCHAR(50) PRIMARY KEY,
+     urun_adi VARCHAR(255) NOT NULL,
+     fiyat DECIMAL(10, 2) NOT NULL,
+     stok_adedi INT DEFAULT 0,
+     son_guncelleme DATETIME DEFAULT CURRENT_TIMESTAMP
+   );
+
+   CREATE TABLE satislar (
+     satis_id INT AUTO_INCREMENT PRIMARY KEY,
+     tarih DATETIME DEFAULT CURRENT_TIMESTAMP,
+     toplam_fiyat DECIMAL(10, 2) NOT NULL,
+     urunler JSON
+   );
+   -----------------
+
+
+
+   -- Veritabanına örnek ürünler ekleme scripti
+-- Kategoriler: Ekmek Çeşitleri, Şarküteri, İçecekler, Kahvaltılıklar, Doğal Ürünler
+
+-- Ekmek Çeşitleri
+INSERT INTO urunler (barkod, urun_adi, fiyat, stok_adedi, son_guncelleme) VALUES
+('8690000000001', 'Beyaz Ekmek (Somun)', 7.50, 50, NOW()),
+('8690000000002', 'Tam Buğday Ekmeği', 9.00, 30, NOW()),
+('8690000000003', 'Çavdar Ekmeği', 12.00, 20, NOW()),
+('8690000000004', 'Köy Ekmeği', 10.50, 25, NOW()),
+('8690000000005', 'Kepekli Ekmek', 9.50, 25, NOW()),
+('8690000000006', 'Trabzon Ekmeği', 12.50, 15, NOW()),
+('8690000000007', 'Simit', 5.00, 40, NOW()),
+('8690000000008', 'Açma', 6.50, 35, NOW()),
+('8690000000009', 'Poğaça (Peynirli)', 7.00, 30, NOW()),
+('8690000000010', 'Poğaça (Patatesli)', 7.00, 25, NOW());
+
+-- Şarküteri Ürünleri
+INSERT INTO urunler (barkod, urun_adi, fiyat, stok_adedi, son_guncelleme) VALUES
+('8690000000011', 'Beyaz Peynir (kg)', 150.00, 10, NOW()),
+('8690000000012', 'Kaşar Peyniri (kg)', 240.00, 8, NOW()),
+('8690000000013', 'Tulum Peyniri (kg)', 280.00, 5, NOW()),
+('8690000000014', 'Ezine Peyniri (kg)', 200.00, 7, NOW()),
+('8690000000015', 'Siyah Zeytin (kg)', 120.00, 15, NOW()),
+('8690000000016', 'Yeşil Zeytin (kg)', 110.00, 15, NOW()),
+('8690000000017', 'Sucuk (250g)', 85.00, 20, NOW()),
+('8690000000018', 'Pastırma (100g)', 95.00, 10, NOW()),
+('8690000000019', 'Jambon (200g)', 70.00, 12, NOW()),
+('8690000000020', 'Sosis (400g)', 60.00, 15, NOW());
+
+-- İçecekler
+INSERT INTO urunler (barkod, urun_adi, fiyat, stok_adedi, son_guncelleme) VALUES
+('8690000000021', 'Ayran (300ml)', 6.50, 50, NOW()),
+('8690000000022', 'Kola (1L)', 20.00, 45, NOW()),
+('8690000000023', 'Maden Suyu (Sade)', 5.00, 60, NOW()),
+('8690000000024', 'Maden Suyu (Limonlu)', 5.50, 40, NOW()),
+('8690000000025', 'Meyve Suyu (Şeftali, 1L)', 22.00, 20, NOW()),
+('8690000000026', 'Meyve Suyu (Vişne, 1L)', 22.00, 20, NOW()),
+('8690000000027', 'Türk Kahvesi (100g)', 45.00, 25, NOW()),
+('8690000000028', 'Çay (1kg)', 90.00, 15, NOW()),
+('8690000000029', 'Soğuk Çay (Limon, 330ml)', 12.00, 30, NOW()),
+('8690000000030', 'Su (1.5L)', 8.00, 100, NOW());
+
+-- Kahvaltılıklar
+INSERT INTO urunler (barkod, urun_adi, fiyat, stok_adedi, son_guncelleme) VALUES
+('8690000000031', 'Bal (450g)', 120.00, 20, NOW()),
+('8690000000032', 'Kaymak (250g)', 85.00, 10, NOW()),
+('8690000000033', 'Tereyağı (500g)', 95.00, 15, NOW()),
+('8690000000034', 'Reçel (Çilek, 380g)', 60.00, 25, NOW()),
+('8690000000035', 'Reçel (Vişne, 380g)', 60.00, 20, NOW()),
+('8690000000036', 'Reçel (Kayısı, 380g)', 60.00, 20, NOW()),
+('8690000000037', 'Fındık Ezmesi (350g)', 85.00, 15, NOW()),
+('8690000000038', 'Tahin (300g)', 70.00, 12, NOW()),
+('8690000000039', 'Pekmez (640g)', 65.00, 15, NOW()),
+('8690000000040', 'Yumurta (15\'li)', 45.00, 30, NOW());
+
+-- Doğal Ürünler
+INSERT INTO urunler (barkod, urun_adi, fiyat, stok_adedi, son_guncelleme) VALUES
+('8690000000041', 'Zeytinyağı (1L, Sızma)', 250.00, 15, NOW()),
+('8690000000042', 'Kuru Kayısı (250g)', 45.00, 20, NOW()),
+('8690000000043', 'Kuru İncir (250g)', 55.00, 18, NOW()),
+('8690000000044', 'Antep Fıstığı (200g)', 120.00, 10, NOW()),
+('8690000000045', 'Ceviz İçi (200g)', 90.00, 15, NOW()),
+('8690000000046', 'Kabak Çekirdeği (200g)', 40.00, 20, NOW()),
+('8690000000047', 'Kuru Fasulye (1kg)', 55.00, 25, NOW()),
+('8690000000048', 'Bulgur (1kg)', 30.00, 30, NOW()),
+('8690000000049', 'Ev Yapımı Erişte (500g)', 38.00, 15, NOW()),
+('8690000000050', 'Karabuğday (500g)', 45.00, 10, NOW());
+
+-- Temel Gıdalar
+INSERT INTO urunler (barkod, urun_adi, fiyat, stok_adedi, son_guncelleme) VALUES
+('8690000000051', 'Pirinç (1kg)', 45.00, 25, NOW()),
+('8690000000052', 'Mercimek (1kg)', 35.00, 30, NOW()),
+('8690000000053', 'Un (1kg)', 20.00, 40, NOW()),
+('8690000000054', 'Toz Şeker (1kg)', 30.00, 35, NOW()),
+('8690000000055', 'Tuz (750g)', 15.00, 50, NOW());
