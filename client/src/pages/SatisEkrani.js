@@ -132,6 +132,17 @@ function SatisEkrani() {
     }
   };
 
+  // Barkod input alanında Enter tuşuna basılmasını dinle
+  const handleKeyDown = (e) => {
+    // Eğer basılan tuş Enter ise ve barkod alanı boşsa
+    if (e.key === 'Enter' && !barkod) {
+      // Formun varsayılan submit davranışını engelle
+      e.preventDefault();
+      // Alışverişi tamamla fonksiyonunu çağır
+      alisverisiTamamla();
+    }
+  };
+
   // Daha fazla ürün göster/gizle
   const toggleUrunList = () => {
     setShowUrunList(!showUrunList);
@@ -192,6 +203,7 @@ function SatisEkrani() {
                       style={{borderRadius: '8px 0 0 8px'}}
                       maxLength={13}
                       autoComplete="off"
+                      onKeyDown={handleKeyDown}
                     />
                     <Button 
                       variant="primary" 

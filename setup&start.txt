@@ -1,0 +1,77 @@
+Projeyi GitHub'dan Klonladıktan Sonra Kurulum ve Çalıştırma Adımları:
+
+1.  **Ana Proje Bağımlılıklarını Yükle:**
+    Projenin kök dizininde terminali açın ve aşağıdaki komutu çalıştırın:
+    ```bash
+    npm install
+    ```
+    Bu komut, ana projenin çalışması için gerekli olan paketleri (`node_modules` klasörünü) yükleyecektir.
+
+2.  **Client Projesi Bağımlılıklarını Yükle:**
+    Terminalde `client` klasörüne gidin:
+    ```bash
+    cd client
+    ```
+    Ardından client projesinin bağımlılıklarını yükleyin:
+    ```bash
+    npm install
+    ```
+    Bu komut, client (arayüz) projesinin çalışması için gerekli paketleri (`client/node_modules` klasörünü) yükleyecektir.
+
+3.  **Projeyi Çalıştır:**
+    Client bağımlılıkları yüklendikten sonra, ana proje dizinine geri dönmenize gerek *yoktur*. İki ayrı terminal açmanız veya mevcut terminali kullanarak işlemleri sırayla yapmanız gerekebilir:
+
+    *   **Backend/Ana Projeyi Çalıştırma:**
+        Projenin **kök dizininde** yeni bir terminal açın (veya ilk terminali kullanın) ve şu komutu çalıştırın:
+        ```bash
+        npm run dev
+        ```
+        (Eğer `npm run dev` komutu yoksa `package.json` dosyasındaki `scripts` bölümünü kontrol edin, çalıştırma komutu farklı olabilir, örneğin `npm start`.)
+
+    *   **Client/Arayüz Projesini Çalıştırma:**
+        **`client` dizininde** yeni bir terminal açın (veya ikinci terminali kullanın) ve şu komutu çalıştırın:
+        ```bash
+        npm start
+        ```
+
+Bu adımları tamamladıktan sonra projeniz geliştirme modunda çalışmaya başlamalıdır. Genellikle tarayıcıda `http://localhost:3000` (veya benzeri bir adres) açılarak arayüze erişilebilir, backend ise belirttiği port üzerinden çalışır. Kullandığınız portlar projenizin yapılandırmasına göre değişebilir. 
+
+---
+
+Setup and Run Steps After Cloning from GitHub:
+
+1.  **Install Main Project Dependencies:**
+    Open a terminal in the project's root directory and run the following command:
+    ```bash
+    npm install
+    ```
+    This command will install the necessary packages (`node_modules` folder) for the main project to run.
+
+2.  **Install Client Project Dependencies:**
+    Navigate to the `client` folder in the terminal:
+    ```bash
+    cd client
+    ```
+    Then install the client project's dependencies:
+    ```bash
+    npm install
+    ```
+    This command will install the necessary packages (`client/node_modules` folder) for the client (interface) project to run.
+
+3.  **Run the Project:**
+    After the client dependencies are installed, you do *not* need to go back to the main project directory. You may need to open two separate terminals or use the current terminal to perform the steps sequentially:
+
+    *   **Run Backend/Main Project:**
+        Open a new terminal in the project's **root directory** (or use the first terminal) and run this command:
+        ```bash
+        npm run dev
+        ```
+        (If the `npm run dev` command doesn't exist, check the `scripts` section in `package.json`; the run command might be different, e.g., `npm start`.)
+
+    *   **Run Client/Interface Project:**
+        Open a new terminal in the **`client` directory** (or use the second terminal) and run this command:
+        ```bash
+        npm start
+        ```
+
+After completing these steps, your project should start running in development mode. Typically, the interface can be accessed in a browser at `http://localhost:3000` (or a similar address), and the backend runs on the port it specifies. The ports used may vary depending on your project's configuration. 
