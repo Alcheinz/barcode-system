@@ -2,10 +2,12 @@
   "name": "barcode-system",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "node backend/server.js",
-     "dev": "nodemon backend/server.js"
+    "dev": "nodemon backend/server.js",
+    "electron:start": "electron .",
+    "build": "electron-builder"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,30 @@
     "mysql2": "^3.14.1"
   },
   "devDependencies": {
+    "electron": "^35.2.1",
+    "electron-builder": "^26.0.12",
     "nodemon": "^3.1.10"
+  },
+  "build": {
+    "appId": "com.example.barcodesystem",
+    "productName": "Barcode System",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      ".env",
+      "backend/**/*",
+      "client/build/**/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }
