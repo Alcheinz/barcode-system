@@ -28,6 +28,7 @@
   "build": {
     "appId": "com.example.barcodesystem",
     "productName": "Barcode System",
+    "icon": "icon.png",
     "directories": {
       "output": "dist"
     },
