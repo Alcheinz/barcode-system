@@ -5,18 +5,20 @@ const ThemeContext = createContext();
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false);
-  
-  // LocalStorage'dan tema bilgisini yükle
-  useEffect(() => {
+  // İlk başlangıç durumunu localStorage'dan al
+  const getSavedTheme = () => {
     const savedTheme = localStorage.getItem('darkMode');
-    if (savedTheme) {
-      setDarkMode(JSON.parse(savedTheme));
+    if (savedTheme !== null) {
+      return JSON.parse(savedTheme);
     }
-  }, []);
+    return false; // Varsayılan değer
+  };
   
-  // Tema durumunu değiştir ve HTML'e tema sınıfını ekle veya kaldır
+  const [darkMode, setDarkMode] = useState(getSavedTheme());
+  
+  // LocalStorage'daki tema değişikliğini dinle ve HTML'e tema sınıfını ekle veya kaldır
   useEffect(() => {
+    // Tema durumunu HTML'de güncelle
     if (darkMode) {
       document.documentElement.setAttribute('data-bs-theme', 'dark');
     } else {
