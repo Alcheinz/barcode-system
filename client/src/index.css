@@ -64,6 +64,13 @@ code {
   color: #f8f9fa;
 }
 
+/* Barkod rozeti için koyu mod uyumluluğu */
+[data-bs-theme="dark"] .badge.bg-light.text-dark {
+  background-color: #343a40 !important;
+  color: #e9ecef !important;
+  border-color: #495057 !important;
+}
+
 /* ThemeToggle stilil */
 .form-switch .form-check-input {
   width: 3em;

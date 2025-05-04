@@ -16,7 +16,9 @@ function SatisEkrani() {
 
   // Barkod input alanına odaklanma
   useEffect(() => {
-    barkodInputRef.current.focus();
+    if (barkodInputRef.current) {
+      barkodInputRef.current.focus();
+    }
   }, []);
 
   // Tüm ürünleri yükle
@@ -70,6 +72,17 @@ function SatisEkrani() {
     
     try {
       const urun = await getUrun(barkodNumarasi);
+      
+      // Stok kontrolü
+      if (urun.stok_adedi <= 0) {
+        setHata(`"${urun.urun_adi}" stokta bulunmuyor`);
+        setBarkod('');
+        setTimeout(() => {
+          setHata('');
+        }, 2000);
+        return;
+      }
+      
       sepeteEkle(urun);
       setHata('');
       setBarkod('');
@@ -88,7 +101,9 @@ function SatisEkrani() {
       }, 1500);
     }
     
-    barkodInputRef.current.focus();
+    if (barkodInputRef.current) {
+      barkodInputRef.current.focus();
+    }
   };
 
   // Barkod okuma ve sepete ekleme işlemi - form için
@@ -125,7 +140,9 @@ function SatisEkrani() {
       
       setTimeout(() => {
         setMesaj('');
-        barkodInputRef.current.focus();
+        if (barkodInputRef.current) {
+          barkodInputRef.current.focus();
+        }
       }, 3000);
     } catch (error) {
       setHata('Satış kaydedilirken hata oluştu');

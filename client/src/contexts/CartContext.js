@@ -35,6 +35,16 @@ export const CartProvider = ({ children }) => {
     
     if (sepetIndex !== -1) {
       // Ürün zaten sepette, miktarını artır
+      // Stok kontrolü yapılıyor
+      const sepettekiMevcutMiktar = sepet[sepetIndex].miktar;
+      const stokAdedi = urun.stok_adedi;
+      
+      // Eğer sepetteki miktar stoktan fazla veya eşitse, artırma yapma
+      if (sepettekiMevcutMiktar >= stokAdedi) {
+        alert(`Stokta sadece ${stokAdedi} adet "${urun.urun_adi}" bulunmaktadır.`);
+        return;
+      }
+      
       const yeniSepet = [...sepet];
       yeniSepet[sepetIndex].miktar += 1;
       setSepet(yeniSepet);
@@ -56,6 +66,14 @@ export const CartProvider = ({ children }) => {
     if (yeniMiktar < 1) return;
     
     const yeniSepet = [...sepet];
+    const urun = yeniSepet[index].urun;
+    
+    // Stok kontrolü
+    if (yeniMiktar > urun.stok_adedi) {
+      alert(`Stokta sadece ${urun.stok_adedi} adet "${urun.urun_adi}" bulunmaktadır.`);
+      return;
+    }
+    
     yeniSepet[index].miktar = yeniMiktar;
     setSepet(yeniSepet);
   };
